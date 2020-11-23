@@ -5,7 +5,12 @@ import Wish from './Wish/Wish';
 class App extends Component {
 
   state = {
-    name: 'mouse'
+    wishes : [
+      {wishname: 'new mouse'},
+      {wishname: 'new keyboard'},
+      {wishname: 'new headset'}
+    ]
+    
 
   }
 
@@ -15,7 +20,9 @@ class App extends Component {
       <div className="App">
           <h1 className="App-title">Welcome to WishList Online</h1>
         <p className="App-intro">
-          <Wish name={this.state.name}/>
+          <Wish wishname={this.state.wishes[0].wishname}/>
+          <Wish wishname={this.state.wishes[1].wishname}/>
+          <Wish wishname={this.state.wishes[2].wishname}/>
         </p>
       </div>
     );

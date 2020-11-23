@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import WishItem from './Wish/WishItem'
 import AddWish from './Wish/AddWish'
+import NavBar from './Components/NavBar';
 
 //1st initial state declared
 const wishes = [
@@ -89,7 +90,7 @@ class App extends Component {
 
     return (
       <div>
-        <h1>Wishlist Online</h1>
+         <NavBar />
 
         <AddWish 
           onAdd={this.onAdd}

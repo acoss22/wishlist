@@ -6,3 +6,13 @@
     padding: 16px;
     text-align: center;
 }
+
+.addContainer{
+    margin: 1rem;
+    display: flex;
+}
+
+.addTitle{
+    clear: both;
+    margin: 1rem;
+}

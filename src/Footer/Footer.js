@@ -6,7 +6,7 @@ class Footer extends Component {
     return (
         <div id="footerwrap">
         <div id="footer">
-            <p className="footerP">Ana Sequeira</p>
+            <p className="footerP">By Ana Sequeira</p>
         </div>
     </div>
     );

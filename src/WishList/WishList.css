@@ -1,0 +1,9 @@
+.listContainer{
+    margin: 1rem;
+    display: flex;
+
+}
+
+.listTitle{
+    clear: both;
+}

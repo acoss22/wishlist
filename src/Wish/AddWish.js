@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 
-
 class AddWish extends Component {
 
   constructor(props){
     super(props)
-
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -19,7 +17,6 @@ class AddWish extends Component {
   }
 
   render() {
-
     return (
       <form onSubmit={this.onSubmit}>
         <h3>Add Wish</h3>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class WishItem extends Component {
 
   constructor(props){

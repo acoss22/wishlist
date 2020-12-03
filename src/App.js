@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import WishItem from './Wish/WishItem'
 import AddWish from './Wish/AddWish'
+import Header from './Header/Header';
 
-//1st initial state declared
+//initial state 
 const wishes = [
   {
     name: 'iPad',
@@ -85,12 +86,12 @@ class App extends Component {
 
 /////////////////////////
 
+
   render() {
 
     return (
       <div>
-        <h1>Wishlist Online</h1>
-
+   <Header/>
         <AddWish 
           onAdd={this.onAdd}
         />

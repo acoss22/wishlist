@@ -5,6 +5,7 @@ import AddWish from "./Wish/AddWish";
 import Header from "./Header/Header";
 import "./App.css";
 import WishList from './WishList/WishList';
+import Footer from './Footer/Footer';
 
 //initial state
 const wishes = [
@@ -109,6 +110,7 @@ class App extends Component {
             })}
             </div>
         </div>
+        <Footer/>
       </div>
     );
   }

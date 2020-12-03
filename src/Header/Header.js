@@ -6,14 +6,14 @@ class Header extends Component {
     return (
       <div className="header">
         <a href="#default" className="logo">
-          CompanyLogo
+          My WishList Online
         </a>
         <div className="header-right">
-          <a className="active" href="#home">
+          {/* <a className="active" href="#home">
             Home
           </a>
           <a href="#contact">Contact</a>
-          <a href="#about">About</a>
+          <a href="#about">About</a> */}
         </div>
       </div>
     );

@@ -1,0 +1,9 @@
+export const ADD_WISHITEM = "ADD_WISHITEM";
+export const UPDATE_WISHITEM = "UPDATE_WISHITEM";
+export const SELECT_WISHITEM = "SELECT_WISHITEM";
+export const DELETE_WISHITEM = "DELETE_WISHITEM";
+
+export const OPEN_FORM = "OPEN_FORM";
+export const CLOSE_FORM = "CLOSE_FORM";
+export const OPEN_EDIT_FORM = "OPEN_EDIT_FORM";
+export const CLOSE_EDIT_FORM = "CLOSE_EDIT_FORM";

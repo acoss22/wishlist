@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import { render } from "react-dom";
 import WishItem from "./Wish/WishItem";
@@ -7,7 +8,6 @@ import "./App.css";
 import WishList from './WishList/WishList';
 import Footer from './Footer/Footer';
 
-//initial state
 const wishes = [
   {
     name: "iPad",
@@ -49,7 +49,6 @@ class App extends Component {
     return this.state.wishes;
   }
 
-  /////////////////////////
   //gets the state and pushes it
   onAdd(name, price) {
     const wishes = this.getwishes();
@@ -87,7 +86,7 @@ class App extends Component {
     this.setState({ wishes });
   }
 
-  /////////////////////////
+
 
   render() {
     return (
@@ -112,6 +111,7 @@ class App extends Component {
             </div>
         </div>
         <Footer/>
+
       </div>
       
     );

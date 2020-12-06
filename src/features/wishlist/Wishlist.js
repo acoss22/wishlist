@@ -40,8 +40,8 @@ export function Wishlist() {
   return (
     <div>
       <div className={styles.row}>
-        <input type="text" onChange={e => setWishName(e.target.value)} placeholder="Wish name"></input>
-        <input type="text" onChange={e => setWishPrice(e.target.value)} placeholder="Wish price"></input>
+        <input type="text" value={wishName} onChange={e => setWishName(e.target.value)} placeholder="Wish name"></input>
+        <input type="text" value={wishPrice} onChange={e => setWishPrice(e.target.value)} placeholder="Wish price"></input>
         <button onClick={onSubmit}>Add</button>
       </div>
       <div>

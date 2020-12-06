@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { add, deleteWish, selectAll } from "./wishlistSlice";
-import styles from "./Counter.module.css";
-import { Button, TextField } from "@material-ui/core";
+import { Button, TextField, FormControl } from "@material-ui/core";
 import "./Wishlist.css";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import clsx from "clsx";
 import List from "@material-ui/core/List";
 import ListItem, { ListItemProps } from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -43,17 +41,34 @@ export function Wishlist() {
 
   const [wishName, setWishName] = useState("");
   const [wishPrice, setWishPrice] = useState("");
+  const [wishURL, setWishURL] = useState("");
+  const [wishDescription, setWishDescription] = useState("");
+  const [wishNameHasError, setWishNameHasError] = useState(true);
+  const [wishPriceHasError, setWishPriceHasError] = useState(true);
+  const [wishURLHasError, setWishURLHasError] = useState(true);
+  const [wishDescriptionHasError, setWishDescriptionHasError] = useState(true);
 
   const onSubmit = () => {
-    let payload = {
-      id: wishlist.length + 1,
-      name: wishName,
-      price: wishPrice,
-    };
 
-    dispatch(add(payload));
-    setWishName("");
-    setWishPrice("");
+    if (!wishNameHasError && !wishPriceHasError && !wishURLHasError && !wishDescriptionHasError) {
+      let payload = {
+        id: wishlist.length + 1,
+        name: wishName,
+        price: wishPrice,
+        url: wishURL,
+        description: wishDescription,
+      };
+
+      dispatch(add(payload));
+      setWishName("");
+      setWishPrice("");
+      setWishURL("");
+      setWishDescription("");
+      setWishNameHasError(false);
+      setWishPriceHasError(false);
+      setWishURLHasError(false);
+      setWishDescriptionHasError(false);
+    }
   };
 
   const handleDelete = (id) => {
@@ -65,39 +80,93 @@ export function Wishlist() {
 
   const editWish = () => {};
 
+  const handleOnChangeName = (e) => {
+    setWishName(e.target.value);
+
+    setWishNameHasError(!e.target.value || 0 === e.target.value.length);
+  };
+
+  const handleOnChangePrice = (e) => {
+    setWishPrice(e.target.value);
+
+    setWishPriceHasError(!e.target.value || 0 === e.target.value.length);
+  };
+
+  const handleOnChangeURL = (e) => {
+    setWishURL(e.target.value);
+
+    setWishURLHasError(!e.target.value || 0 === e.target.value.length);
+  };
+
+  const handleOnChangeDescription = (e) => {
+    setWishDescription(e.target.value);
+
+    setWishDescriptionHasError(!e.target.value || 0 === e.target.value.length);
+  };
+
   return (
     <div>
       <div className="input-container">
         <form className={classes.root} noValidate autoComplete="off">
-          <TextField
-            id="filled-basic"
-            type="text"
-            value={wishName}
-            onChange={(e) => setWishName(e.target.value)}
-            label="Wish Name"
-            variant="filled"
-            className={clsx(classes.margin, classes.textField)}
-          />
-          <TextField
-            id="filled-basic"
-            value={wishPrice}
-            onChange={(e) => setWishPrice(e.target.value)}
-            type="number"
-            label="Wish price"
-            variant="filled"
-            className={clsx(classes.margin, classes.textField)}
-          ></TextField>
-          <Button onClick={onSubmit} color="primary">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="24"
-              viewBox="0 0 24 24"
-              width="24"
-            >
-              <path d="M0 0h24v24H0z" fill="none" />
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" />
-            </svg>
-          </Button>
+          <FormControl>
+            <TextField
+              required
+              id="filled-basic"
+              type="text"
+              value={wishName}
+              onChange={handleOnChangeName}
+              label="Wish..."
+              variant="filled"
+              error={wishNameHasError}
+              className={clsx(classes.margin, classes.textField)}
+            />
+            <TextField
+              required
+              id="filled-basic"
+              value={wishPrice}
+              onChange={handleOnChangePrice}
+              label="Wish..."
+              variant="filled"
+              error={wishPriceHasError}
+              type="number"
+              label="0.00 €"
+              className={clsx(classes.margin, classes.textField)}
+            ></TextField>
+            <TextField
+              required
+              id="filled-basic"
+              type="text"
+              value={wishURL}
+              onChange={handleOnChangeURL}
+              error={wishURLHasError}
+              label="URL..."
+              variant="filled"
+              className={clsx(classes.margin, classes.textField)}
+            />
+            <TextField
+              required
+              id="filled-basic"
+              value={wishDescription}
+              onChange={handleOnChangeDescription}
+              type="text"
+              label="Description..."
+              variant="filled"
+              error={wishDescriptionHasError}
+              className={clsx(classes.margin, classes.textField)}
+            ></TextField>
+
+            <Button onClick={onSubmit} color="primary">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+              >
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" />
+              </svg>
+            </Button>
+          </FormControl>
         </form>
       </div>
       <div>
@@ -108,8 +177,8 @@ export function Wishlist() {
                 <List component="nav" aria-label="secondary mailbox folders">
                   <ListItemLink href="#simple-list">
                     <ListItemText>
-                      {wish.name} - {wish.price}{" "}
-                      <button onClick={editWish}>
+                      {wish.name} - {wish.price}€
+                      <button className="btn-form" onClick={editWish}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"

@@ -1,21 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 export const wishlistSlice = createSlice({
-  name: 'wishlist',
-  initialState: [],
+  name: "wishlist",
+  initialState: [{ name: "A Promised Land", 
+  price: 15, url: "",
+   description: "" }],
   reducers: {
     add: (state, action) => {
-      state = state.push({ id: action.payload.id, name: action.payload.name, price: action.payload.price});
+      state = state.push({
+        id: action.payload.id,
+        name: action.payload.name,
+        price: action.payload.price,
+        url: action.payload.url,
+        description: action.payload.description,
+      });
     },
-    deleteWish: (state, action) =>{
+    deleteWish: (state, action) => {
       state = state.filter((wish) => wish.id !== action.payload.id);
       return state;
-    }
+    },
   },
 });
 
 export const { add, deleteWish } = wishlistSlice.actions;
-
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

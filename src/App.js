@@ -12,7 +12,7 @@ function App() {
         <div className="container">
         <Router>
           <Header />
-          <div className="container">
+          <div className="container-main">
             <Switch>
               <Route path="/Contact" component={Contact} />
 

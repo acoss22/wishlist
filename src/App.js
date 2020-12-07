@@ -1,10 +1,10 @@
 import React from 'react';
 import { Wishlist } from './features/wishlist/Wishlist';
 import './App.css';
-import Header from "./Header/Header";
-import Footer from "./Footer/Footer";
+import Header from "./UIComponents/Header/Header";
+import Footer from "./UIComponents/Footer/Footer";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Contact from "./Contact/Contact";
+import Contact from "./UIComponents/Contact/Contact";
 
 function App() {
   return (

@@ -6,7 +6,7 @@ import "./Wishlist.css";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import clsx from "clsx";
 import List from "@material-ui/core/List";
-import ListItem, { ListItemProps } from "@material-ui/core/ListItem";
+import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -125,7 +125,6 @@ export function Wishlist() {
               id="filled-basic"
               value={wishPrice}
               onChange={handleOnChangePrice}
-              label="Wish..."
               variant="filled"
               error={wishPriceHasError}
               type="number"

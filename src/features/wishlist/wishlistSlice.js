@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export const wishlistSlice = createSlice({
   name: "wishlist",
   initialState: [{ name: "A Promised Land", 
-  price: 15, url: "",
-   description: "" }],
+  price: 15, url: "https://cutt.ly/dhQyXFY",
+   description: "Book by Barack Obama" }],
   reducers: {
     add: (state, action) => {
       state = state.push({

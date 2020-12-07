@@ -176,7 +176,7 @@ export function Wishlist() {
                 <List component="nav" aria-label="secondary mailbox folders">
                   <ListItemLink href="#simple-list">
                     <ListItemText>
-                      {wish.name} - {wish.price}€
+                      {wish.name} - {wish.price}€ - <a href={wish.url}>Buy Here </a> - {wish.description}
                       <button className="btn-form" onClick={editWish}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"

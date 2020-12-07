@@ -1,28 +1,27 @@
 import React, { Component } from "react";
-
-
+import "./Contact.scss";
 class Contact extends Component {
   render() {
     return (
       <div>
-        
-         <form id="contact-form" onSubmit={this.handleSubmit.bind(this)} method="POST">
-    <div className="form-group">
-        <label htmlFor="name">Name</label>
-        <input type="text" className="form-control" />
-    </div>
-    <div className="form-group">
-        <label htmlFor="exampleInputEmail1">Email address</label>
-        <input type="email" className="form-control" aria-describedby="emailHelp" />
-    </div>
-    <div className="form-group">
-        <label htmlFor="message">Message</label>
-        <textarea className="form-control" rows="5"></textarea>
-    </div>
-    <button type="submit" className="btn btn-primary">Submit</button>
-</form>
-       
-      
+        <section class="push" id="contact">
+          <div class="firstSection card">
+            <h2>Feel free to ask me anything!</h2>
+
+            <a
+              href="mailto:anacseq@gmail.com"
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              class="contact-btn button1"
+            >
+              <div class="button">
+                <span class="button__mask"></span>
+                <span class="button__text">Say Hello!</span>
+                <span class="button__text button__text--bis">Say Hello!</span>
+              </div>
+            </a>
+          </div>
+        </section>
       </div>
     );
   }

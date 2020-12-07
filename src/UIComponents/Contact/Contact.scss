@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,700,900');
+
+$anim-text-offset: 1em;
+
+body{
+  font-family: 'Work Sans', sans-serif;
+  text-align: center;
+}
+.wrapper{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#contact {
+    max-width: 1000px;
+    position: relative;
+    margin: 0px auto;
+    padding: 200px 0px;
+    width: 800px;
+}
+
+.contact-btn {
+    color: #000;
+}
+
+.firstSection>p {
+    font-size: 17px;
+}
+
+.firstSection {
+    margin: 0 auto;
+    width: 800px;
+}
+
+
+.card {
+    padding: 20px;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    border-radius: 2px solid #fff;
+    border: 3px 3px 0 0 solid #000000;
+}
+
+a.button1 {
+    display: inline-block;
+    padding: 0.35em 1.2em;
+    border: 0.1em solid #FFFFFF;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: Calibre, "San Francisco", "SF Pro Text", -apple-system, system-ui, BlinkMacSystemFont, Roboto, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+    font-weight: 300;
+    color: #000;
+    text-align: center;
+    transition: all 0.2s;
+}
+a.button1:hover {
+    color: #000000;
+    background-color: #fff;
+}
+
+@media all and (max-width:30em) {
+    a.button1 {
+        display: block;
+        margin: 0.4em auto;
+    }
+}
+
+
+.button{
+    touch-callout: none;
+    user-select: none;
+    display: inline-block;
+    border: .2em solid;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    opacity: 0.6;
+    &__text{
+      display: block;
+      padding:1em 2em;
+      text-transform: uppercase;
+      font-weight: bold;
+      &:before{
+        content: attr(title);
+      }
+      &--bis{
+        display: block;
+        position: absolute;
+        top: 0; left:0; right: 0; bottom: 0;
+        transform: translateX(-1 * $anim-text-offset);
+        opacity: 0;
+      }
+    }
+    &__mask{
+      display: block;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: white;
+      transform: translateX(-100%) rotate(45deg);
+      transition: all 0.3s;
+    }  
+  }
+  
+  .button:hover{
+    opacity: 1;
+    .button__text{
+      animation: fx-text .3s ease-out;
+      &--bis{
+        animation: fx-text-bis .3s ease-out;
+      }
+    }    
+    .button__mask{
+      animation: fx-mask .3s ease-out;
+    }    
+  }
+  
+  .button:active{
+    opacity: 1;
+    background: white;
+    color: inherit;
+  }
+  
+  
+  
+  @keyframes fx-mask {
+    0%{
+      transform: translateX(-100%) rotate(45deg);
+    }
+    100%{
+      transform: translateX(100%) rotate(45deg);
+    }
+  }
+  
+  @keyframes fx-text {
+    0%{
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100%{
+      transform: translateX($anim-text-offset);
+      opacity: 0;
+    }
+  }
+  @keyframes fx-text-bis {
+    0%{
+      transform: translateX(-1 * $anim-text-offset);
+      opacity: 0;
+    }
+    100%{
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }

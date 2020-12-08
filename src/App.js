@@ -1,5 +1,6 @@
 import React from 'react';
 import { Wishlist } from './features/wishlist/Wishlist';
+import WishDetail from './features/wishlist/WishDetail';
 import './App.css';
 import Header from "./UIComponents/Header/Header";
 import Footer from "./UIComponents/Footer/Footer";
@@ -15,9 +16,8 @@ function App() {
           <div className="container-main">
             <Switch>
               <Route path="/Contact" component={Contact} />
-
-            
-              <Wishlist />
+              <Route path="/Wish/:wishId" component={WishDetail} />
+              <Route path="/" component={Wishlist}/>
               <div className="list"></div>
             </Switch>
           </div>

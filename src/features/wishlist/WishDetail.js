@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import { add, deleteWish, selectAll } from "./wishlistSlice";
 import { Button, TextField, FormControl } from "@material-ui/core";
-import "./Wishlist.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./Wishlist.scss";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import clsx from "clsx";
-import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import { Link } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,6 +35,10 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
+function ImgMediaCard() {
+  const classes = useStyles();
+}
+
 function ListItemLink(props) {
   return React.createElement(
     ListItem,
@@ -36,48 +46,59 @@ function ListItemLink(props) {
   );
 }
 
-function WishDetail(){
-    const { wishId } = useParams()
-    const classes = useStyles();
-    const wish = useSelector(selectAll).filter(s => s.id == wishId)[0];
-    const dispatch = useDispatch();
+function WishDetail() {
+  const { wishId } = useParams();
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  let history = useHistory();
+  const wishlistAux = useSelector(selectAll).filter((s) => s.id == wishId);
 
-    const [wishName, setWishName] = useState(wish.name);
-    const [wishPrice, setWishPrice] = useState(wish.price);
-    const [wishURL, setWishURL] = useState(wish.url);
-    const [wishDescription, setWishDescription] = useState(wish.description);
-    const [editWish, setEditWish] = useState(false);
-    const [wishNameHasError, setWishNameHasError] = useState(false);
-    const [wishPriceHasError, setWishPriceHasError] = useState(false);
-    const [wishURLHasError, setWishURLHasError] = useState(false);
-    const [wishDescriptionHasError, setWishDescriptionHasError] = useState(false);
+  const wish = wishlistAux.length != 0 ? wishlistAux[0] : null;
 
-    const onSubmit = () => {
-      if (!wishNameHasError && !wishPriceHasError && !wishURLHasError && !wishDescriptionHasError) {
-        let payload = {
-          id: wishId,
-          name: wishName,
-          price: wishPrice,
-          url: wishURL,
-          description: wishDescription
-        }
-  
-        const deletePayload = {
-          id: wishId,
-        };
-        dispatch(deleteWish(deletePayload));
-        dispatch(add(payload));
-        setWishNameHasError(false);
-        setWishPriceHasError(false);
-        setWishURLHasError(false);
-        setWishDescriptionHasError(false);
-        setEditWish(false);
-      }
-    };
+  const [wishName, setWishName] = useState(wish ? wish.name : "");
+  const [wishPrice, setWishPrice] = useState(wish ? wish.price : "");
+  const [wishURL, setWishURL] = useState(wish ? wish.url : "");
+  const [wishDescription, setWishDescription] = useState(
+    wish ? wish.description : ""
+  );
+  const [editWish, setEditWish] = useState(false);
+  const [wishNameHasError, setWishNameHasError] = useState(false);
+  const [wishPriceHasError, setWishPriceHasError] = useState(false);
+  const [wishURLHasError, setWishURLHasError] = useState(false);
+  const [wishDescriptionHasError, setWishDescriptionHasError] = useState(false);
 
-    const enableEdit = () => {
-      setEditWish(true);
+  const onSubmit = () => {
+    if (
+      !wishNameHasError &&
+      !wishPriceHasError &&
+      !wishURLHasError &&
+      !wishDescriptionHasError
+    ) {
+      let payload = {
+        id: wishId,
+        name: wishName,
+        price: wishPrice,
+        url: wishURL,
+        description: wishDescription,
+      };
+
+      const deletePayload = {
+        id: wishId,
+      };
+      console.log("Delete payload: " + JSON.stringify(deletePayload));
+      dispatch(deleteWish(deletePayload));
+      dispatch(add(payload));
+      setWishNameHasError(false);
+      setWishPriceHasError(false);
+      setWishURLHasError(false);
+      setWishDescriptionHasError(false);
+      setEditWish(false);
     }
+  };
+
+  const enableEdit = () => {
+    setEditWish(true);
+  };
 
   const handleOnChangeName = (e) => {
     setWishName(e.target.value);
@@ -99,82 +120,147 @@ function WishDetail(){
     setWishDescriptionHasError(!e.target.value || 0 === e.target.value.length);
   };
 
-    return (
-        <div>
-          <div className="input-container">
+  const handleDelete = (id) => {
+    const payload = {
+      id: id,
+    };
+    dispatch(deleteWish(payload));
+  };
+
+  return (
+    <div>
+      {wish ? (
+        <div className="input-container">
+          {editWish ? (
             <form className={classes.root} noValidate autoComplete="off">
               <FormControl>
-                {!editWish ? (
-                  <span>{wishName}</span>
-                ) : (
-                  <TextField
-                    required id="filled-basic" type="text"
-                    value={wishName} onChange={handleOnChangeName}
-                    label="Wish"
-                    variant="filled" error={wishNameHasError}
-                    className={clsx(classes.margin, classes.textField)}
-                  />
-                )
-              }
-
-                {!editWish ? (
-                  <span>{wishPrice}</span>
-                ) : (
-                  <TextField
-                    required id="filled-basic" value={wishPrice}
-                    onChange={handleOnChangePrice} variant="filled"
-                    error={wishPriceHasError} type="number"
-                    label="Price" className={clsx(classes.margin, classes.textField)}
-                  />
-                )
-              }
-
-                {!editWish ? (
-                  <span>{wishURL}</span>
-                ) : (
-                  <TextField
-                    required id="filled-basic" type="text"
-                    value={wishURL} onChange={handleOnChangeURL}
-                    error={wishURLHasError} label="URL"
-                    variant="filled" className={clsx(classes.margin, classes.textField)}
-                  />
-                )
-              }
-
-                {!editWish ? (
-                  <span>{wishDescription}</span>
-                ) : (
-                  <TextField
-                    required id="filled-basic" value={wishDescription}
-                    onChange={handleOnChangeDescription} type="text"
-                    label="Description"
-                    variant="filled" error={wishDescriptionHasError}
-                    className={clsx(classes.margin, classes.textField)}
-                  />
-                )
-              }
-                
-                {editWish ? (
-                <Button onClick={onSubmit} color="primary">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" >
-                    <path d="M0 0h24v24H0z" fill="none" />
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" />
-                  </svg>
-                </Button>
-                ) : (
-                  <Button onClick={enableEdit} color="primary">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" >
-                    <path d="M0 0h24v24H0z" fill="none" />
-                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
-                  </svg>
-                </Button>
-                )
-                }
+                <TextField
+                  required
+                  id="filled-basic"
+                  type="text"
+                  value={wishName}
+                  onChange={handleOnChangeName}
+                  label="Wish"
+                  variant="filled"
+                  error={wishNameHasError}
+                  className={clsx(classes.margin, classes.textField)}
+                />
+                <TextField
+                  required
+                  id="filled-basic"
+                  value={wishPrice}
+                  onChange={handleOnChangePrice}
+                  variant="filled"
+                  error={wishPriceHasError}
+                  type="number"
+                  label="Price"
+                  className={clsx(classes.margin, classes.textField)}
+                />
+                <TextField
+                  required
+                  id="filled-basic"
+                  type="text"
+                  value={wishURL}
+                  onChange={handleOnChangeURL}
+                  error={wishURLHasError}
+                  label="URL"
+                  variant="filled"
+                  className={clsx(classes.margin, classes.textField)}
+                />
+                <TextField
+                  required
+                  id="filled-basic"
+                  value={wishDescription}
+                  onChange={handleOnChangeDescription}
+                  type="text"
+                  label="Description"
+                  variant="filled"
+                  error={wishDescriptionHasError}
+                  className={clsx(classes.margin, classes.textField)}
+                />
               </FormControl>
             </form>
-          </div>
+          ) : (
+            <form className={classes.root} noValidate autoComplete="off">
+              <FormControl>
+                <Card className={classes.root}>
+                  <CardActionArea>
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        <span>{wishName}</span>
+                      </Typography>
+
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                      >
+                        <span>{wishPrice}€</span>
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                      >
+                        <span>{wishURL}</span>
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                      >
+                        <span>{wishDescription}</span>
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                  {!editWish && (
+                    <CardActions className="left-btn">
+                      <button
+                        onClick={enableEdit}
+                        color="primary"
+                        className="btn btn-warning"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDelete(wishId)}
+                        color="primary"
+                        className="btn btn-danger"
+                      >
+                        Delete
+                      </button>
+                    </CardActions>
+                  )}
+                </Card>
+              </FormControl>
+            </form>
+          )}
+
+          {editWish ? (
+            <Button
+              onClick={onSubmit}
+              color="primary"
+              className="button-add-wish"
+            >
+              Save Changes
+            </Button>
+          ) : (
+            <div></div>
+          )}
         </div>
-      );
+      ) : (
+        <div>
+          <span>This wish has been deleted!</span>
+          <Link to="/">
+            <Button className="btn font-weight-bold button-previous prev">
+             
+              Previous
+            </Button>
+          </Link>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default WishDetail;

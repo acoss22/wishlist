@@ -4,20 +4,20 @@ class Contact extends Component {
   render() {
     return (
       <div>
-        <section class="push" id="contact">
-          <div class="firstSection card">
+        <section className="push" id="contact">
+          <div className="firstSection card">
             <h2>Feel free to ask me anything!</h2>
 
             <a
               href="mailto:anacseq@gmail.com"
               target="_blank"
               rel="nofollow noopener noreferrer"
-              class="contact-btn button1"
+              className="contact-btn button1"
             >
-              <div class="button">
-                <span class="button__mask"></span>
-                <span class="button__text">Say Hello!</span>
-                <span class="button__text button__text--bis">Say Hello!</span>
+              <div className="button">
+                <span className="button__mask"></span>
+                <span className="button__text">Say Hello!</span>
+                <span className="button__text button__text--bis">Say Hello!</span>
               </div>
             </a>
           </div>

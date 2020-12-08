@@ -17,16 +17,6 @@ export const wishlistSlice = createSlice({
         description: action.payload.description,
       });
     },
-    update: (state, action) => {
-      state = state.filter((wish) => wish.id != action.payload.id);
-      // state = state.push({
-      //   id: action.payload.id,
-      //   name: action.payload.name,
-      //   price: action.payload.price,
-      //   url: action.payload.url,
-      //   description: action.payload.description,
-      // });
-    },
     deleteWish: (state, action) => {
       state = state.filter((wish) => wish.id != action.payload.id);
       return state;
@@ -34,7 +24,7 @@ export const wishlistSlice = createSlice({
   },
 });
 
-export const { add, update, deleteWish } = wishlistSlice.actions;
+export const { add, deleteWish } = wishlistSlice.actions;
 
 export const selectAll = (state) => state.wishlist;
 

@@ -5,6 +5,7 @@ $anim-text-offset: 1em;
 body{
   font-family: 'Work Sans', sans-serif;
   text-align: center;
+  overflow: hidden;
 }
 .wrapper{
   width: 100vw;
@@ -155,5 +156,23 @@ a.button1:hover {
     100%{
       transform: translateX(0);
       opacity: 1;
+    }
+  }
+
+  @media all and (min-width:0px) and (max-width: 399px) {
+    /* put your css styles in here */
+    body{
+      overflow: hidden;
+      overflow-x: hidden;
+    
+    }
+  
+    #contact {
+      overflow: hidden;
+      overflow-x: hidden;
+    }
+
+    .addnew-title {
+      margin: 0 auto;
     }
   }

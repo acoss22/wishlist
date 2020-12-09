@@ -27,7 +27,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     textField: {
       width: "21em",
-  
     },
   })
 );
@@ -115,113 +114,116 @@ export function AddWish() {
   };
 
   return (
-    
     <div>
-      <div className="left-something">
-        <Link to="/">
-          <Button className="btn font-weight-bold button-previous" > Previous</Button>
-        </Link>
+      <div className="left-btn-title">
+        <div className="row-btn-prev-add-title">
+          <Link to="/">
+            <Button className="btn font-weight-bold button-previous">
+              {" "}
+              Previous
+            </Button>
+          </Link>
+        </div>
       </div>
-      <h2 class="addnnew-title"> Add a new wish! </h2>
+      <h2 class="addnew-title"> Add a new wish! </h2>
       <div className="input-container">
         <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
           <Alert onClose={handleClose} severity="success">
             This is a success message!
           </Alert>
         </Snackbar>
-        
-        <form className={classes.root} noValidate autoComplete="off">
-          <FormControl>
-            <TextField
-              required
-              id="filled-basic"
-              type="text"
-              fullWidth
-              margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              style={{ margin: 8 }}
-              value={wishName}
-              onChange={handleOnChangeName}
-              label="Wish..."
-              variant="filled"
-              error={wishNameHasError}
-              className={clsx(classes.margin, classes.textField)}
-            />
-            <TextField
-              required
-              fullWidth
-              margin="normal"
-              style={{ margin: 8 }}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              id="filled-basic"
-              value={wishPrice}
-              onChange={handleOnChangePrice}
-              variant="filled"
-              error={wishPriceHasError}
-              type="number"
-              label="0.00 €"
-              className={clsx(classes.margin, classes.textField)}
-            ></TextField>
-            <TextField
-              required
-              fullWidth
-              style={{ margin: 8 }}
-              margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              id="filled-basic"
-              type="text"
-              value={wishURL}
-              onChange={handleOnChangeURL}
-              error={wishURLHasError}
-              label="URL..."
-              variant="filled"
-              className={clsx(classes.margin, classes.textField)}
-            />
-            <TextField
-              required
-              fullWidth
-                 style={{ margin: 8 }}
-              margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              id="filled-basic"
-              value={wishDescription}
-              onChange={handleOnChangeDescription}
-              type="text"
-              label="Description..."
-              variant="filled"
-              error={wishDescriptionHasError}
-              className={clsx(classes.margin, classes.textField)}
-            ></TextField>
+        <div className="form-mobile">
+          <form className={classes.root} noValidate autoComplete="off">
+            <FormControl>
+              <TextField
+                required
+                id="filled-basic"
+                type="text"
+                fullWidth
+                margin="normal"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                style={{ margin: 8 }}
+                value={wishName}
+                onChange={handleOnChangeName}
+                label="Wish..."
+                variant="filled"
+                error={wishNameHasError}
+                className={clsx(classes.margin, classes.textField)}
+              />
+              <TextField
+                required
+                fullWidth
+                margin="normal"
+                style={{ margin: 8 }}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                id="filled-basic"
+                value={wishPrice}
+                onChange={handleOnChangePrice}
+                variant="filled"
+                error={wishPriceHasError}
+                type="number"
+                label="0.00 €"
+                className={clsx(classes.margin, classes.textField)}
+              ></TextField>
+              <TextField
+                required
+                fullWidth
+                style={{ margin: 8 }}
+                margin="normal"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                id="filled-basic"
+                type="text"
+                value={wishURL}
+                onChange={handleOnChangeURL}
+                error={wishURLHasError}
+                label="URL..."
+                variant="filled"
+                className={clsx(classes.margin, classes.textField)}
+              />
+              <TextField
+                required
+                fullWidth
+                style={{ margin: 8 }}
+                margin="normal"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                id="filled-basic"
+                value={wishDescription}
+                onChange={handleOnChangeDescription}
+                type="text"
+                label="Description..."
+                variant="filled"
+                error={wishDescriptionHasError}
+                className={clsx(classes.margin, classes.textField)}
+              ></TextField>
 
-            <Button
-              onClick={onSubmit}
-              color="primary"
-              className="btn font-weight-bold button-add-wish"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="#fff"
-                height="24"
-                viewBox="0 0 24 24"
-                width="24"
+              <Button
+                onClick={onSubmit}
+                color="primary"
+                className="btn font-weight-bold button-add-wish"
               >
-                <path d="M0 0h24v24H0z" fill="none" />
-                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-              </svg>{" "}
-              Add
-            </Button>
-          </FormControl>
-        </form>
-
-        
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="#fff"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  width="24"
+                >
+                  <path d="M0 0h24v24H0z" fill="none" />
+                  <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                </svg>{" "}
+                Add
+              </Button>
+            </FormControl>
+          </form>
+        </div>
       </div>
     </div>
   );

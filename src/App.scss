@@ -75,9 +75,10 @@
   font-weight: 600 !important;
 }
 
-.left-something {
+.left-btn-title {
   position: fixed;
   left: 15px;
+  display: flex;
 }
 
 .input-size {
@@ -96,15 +97,53 @@
   margin: 40px 0 !important;
 }
 
-.addnnew-title {
+.addnew-title {
   margin-left: 2.5em;
   font-size: 1.5em;
 }
 
-@media all and (min-width: 500px) and (max-width: 3000px) {
+@media all and (min-width: 400px) and (max-width: 3000px) {
   /* put your css styles in here */
 
-  .addnnew-title {
+  .addnew-title {
     margin: 0 auto;
+  }
+}
+
+
+@media all and (min-width:0px) and (max-width: 399px) {
+  /* put your css styles in here */
+  body{
+    overflow: hidden;
+    overflow-x: hidden;
+  }
+  .left-btn-title{
+    clear: both;
+    margin: 0;
+    width: 100%;
+    display: flex;
+
+  }
+  
+  .app{
+    overflow: hidden;
+    overflow-x: hidden;
+  }
+
+  #root{
+    overflow: hidden;
+    overflow-x: hidden;
+  }
+  .addnew-title {
+    margin: 0 auto;
+  }
+
+  .form-mobile{
+    display: flex;
+    flex-wrap: wrap;
+    clear: both;
+    margin: auto;
+    width: 100%;
+    margin-top: 40px;
   }
 }

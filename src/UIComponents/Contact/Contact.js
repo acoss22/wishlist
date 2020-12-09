@@ -6,7 +6,7 @@ class Contact extends Component {
       <div>
         <section className="push" id="contact">
           <div className="firstSection card">
-            <h2>Feel free to ask me anything!</h2>
+            <h2 className="addnew-title">Feel free to ask me anything!</h2>
 
             <a
               href="mailto:anacseq@gmail.com"

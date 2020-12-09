@@ -26,9 +26,8 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: theme.spacing(3),
     },
     textField: {
-      width: "60ch",
-      maxWidth: "80ch",
-      minWidth: "50ch"
+      width: "21em",
+  
     },
   })
 );
@@ -123,7 +122,7 @@ export function AddWish() {
           <Button className="btn font-weight-bold button-previous" > Previous</Button>
         </Link>
       </div>
-      <h2> Add a new wish! </h2>
+      <h2 class="addnnew-title"> Add a new wish! </h2>
       <div className="input-container">
         <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
           <Alert onClose={handleClose} severity="success">

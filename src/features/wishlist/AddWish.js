@@ -129,7 +129,7 @@ export function AddWish() {
       <div className="input-container">
         <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
           <Alert onClose={handleClose} severity="success">
-            This is a success message!
+            Wish item added with success!
           </Alert>
         </Snackbar>
         <div className="form-mobile">
